@@ -86,7 +86,7 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
-  }
+  }  
 ];
 
 /*
@@ -108,9 +108,81 @@ const data = [
 
   Step 3: Don't forget to return something from your function!
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
-
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
-  Refresh the page to see the new article.
 */
+
+function articleMaker(articleObj) {
+
+  //creating the elements
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const para1 = document.createElement('p');
+  const para2 = document.createElement('p');
+  const para3 = document.createElement('p');
+  const expand = document.createElement('span');
+
+  //creating document tree
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(para1);
+  article.appendChild(para2);
+  article.appendChild(para3);
+  article.appendChild(expand);
+
+  //adding classes
+  article.classList.add('article');
+  date.classList.add('date');
+  expand.classList.add('expandButton');
+
+//setting text content
+  title.textContent = articleObj.title;
+  date.textContent = articleObj.date;
+  para1.textContent = articleObj.firstParagraph;
+  para2.textContent = articleObj.secondParagraph;
+  para3.textContent = articleObj.thirdParagraph;
+  expand.textContent = '😇➕😈';
+
+  //adding event listener to expand article
+  expand.addEventListener('click', event => {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+
+}
+
+  // Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
+  // to create a div.article element and append it to the DOM inside div.articles (see index.html).
+
+  
+  data.forEach(article => {
+    document.querySelector('.articles').appendChild(articleMaker(article));
+  });
+  
+/* 💥❗ Convoluted way below using .map
+  const artArr = data.map(article => {
+    return articleMaker(article);
+  });
+  
+  artArr.forEach(art => {
+    document.querySelector('.articles').appendChild(art);
+  }); 
+  */
+  
+
+  // Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+  // Refresh the page to see the new article.
+
+const lambdaDoggo = {
+  title: 'Lambda for dogs!',
+  date: 'Oct 28th, 2020',
+  firstParagraph: 'Doggo ipsum the neighborhood pupper blep most angery pupper I have ever seen woofer pupper, corgo snoot. I am bekom fat bork shooberino ruff borkf, long bois doing me a frighten blep ur givin me a spook such treat, yapper pats bork. Wow such tempt borking doggo smol borking doggo with a long snoot for pats extremely cuuuuuute shoober most angery pupper I have ever seen, blep woofer shooberino. Very taste wow blep puggo woofer, ur givin me a spook very taste wow. Long doggo boof wow such tempt much ruin diet bork, wrinkler most angery pupper I have ever seen thicc. bork fluffer. Puggo boofers bork, heckin good boys.',
+
+  secondParagraph: 'Long doggo shoob shooberino pats, you are doing me the shock. Vvv wow very biscit stop it fren puggorino, bork length boy. Boof bork ur givin me a spook pupperino, blop. Mlem doge shoober big ol pupper, long water shoob shibe. Smol ruff woofer tungg shoober, porgo much ruin diet extremely cuuuuuute. Super chub shoober long doggo, smol. Sub woofer doggo lotsa pats you are doin me a concern very good spot, the neighborhood pupper most angery pupper I have ever seen. heck long bois porgo. Long bois porgo pats stop it fren doing me a frighten, heckin good boys and girls the neighborhood pupper. Many pats doggorino heckin angery woofer, bork. Mlem long doggo corgo heckin good boys length boy blop, what a nice floof wrinkler blep. Lotsa pats long bois maximum borkdrive long water shoob puggorino, vvv wrinkler. Sub woofer much ruin diet ur givin me a spook shoober you are doing me a frighten, ruff mlem long bois.',
+
+  thirdParagraph: 'Snoot he made many woofs heckin good boys and girls you are doing me a frighten shibe, sub woofer heckin good boys. Pats smol blep shoober, fat boi ur givin me a spook extremely cuuuuuute big ol, pupperino you are doin me a concern. Pats puggo long doggo, fluffer. Length boy heckin good boys and girls tungg wow very biscit pupper blop, long water shoob pats stop it fren thicc. Very jealous pupper you are doing me the shock most angery pupper I have ever seen, snoot. Wrinkler aqua doggo corgo ur givin me a spook porgo, you are doing me the shock sub woofer he made many woofs, wow very biscit thicc long woofer. Wrinkler boofers wrinkler fluffer long water shoob very jealous pupper long doggo h*ck, tungg blep boof wrinkler pupper. Most angery pupper I have ever seen extremely cuuuuuute most angery pupper I have ever seen you are doing me the shock long doggo, much ruin diet adorable doggo. Heck porgo he made many woofs, porgo.'
+}
+
+document.querySelector('.articles').appendChild(articleMaker(lambdaDoggo));
+  //👍 Done! added Doggo Ipsum
+
